@@ -25,15 +25,8 @@ export default function SignIn() {
 
     const validateEmail = (email) => {
         const trimmedEmail = email.trim().toLowerCase();
-        const validDomain = '@rguktong.ac.in';
-
-        if (!trimmedEmail.endsWith(validDomain)) {
-            return { valid: false, message: 'Email must end with @rguktong.ac.in' };
-        }
-
-        const username = trimmedEmail.split('@')[0];
-        if (!username.startsWith('o')) {
-            return { valid: false, message: 'Email must start with letter "o"' };
+        if (!/^2\d[^@\s]*@gcet\.edu\.in$/i.test(trimmedEmail)) {
+            return { valid: false, message: 'Use your student email ending with @gcet.edu.in' };
         }
 
         return { valid: true, normalizedEmail: trimmedEmail };
@@ -67,7 +60,7 @@ export default function SignIn() {
             // Use normalized (trimmed and lowercase) email for the API request
             const normalizedEmail = validation.normalizedEmail;
 
-            const response = await axios.post('https://campushub-api.vercel.app/user/signin', {
+            const response = await axios.post('/user/signin', {
                 email: normalizedEmail,
                 password
             });
@@ -111,13 +104,13 @@ export default function SignIn() {
                             className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 bg-gray-50 hover:bg-white ${emailError ? 'border-red-500' : 'border-gray-300'}`}
                             value={email}
                             onChange={handleEmailChange}
-                            placeholder="o123456@rguktong.ac.in"
+                            placeholder="21XXXXXX@gcet.edu.in"
                             required
                         />
                         {emailError && (
                             <p className="text-red-500 text-xs mt-1">{emailError}</p>
                         )}
-                        <p className="text-gray-500 text-xs mt-1">Email must start with (o) and end with (@rguktong.ac.in) currently only for rgukt students.</p>
+                        <p className="text-gray-500 text-xs mt-1">Use your GCET student email ending in @gcet.edu.in.</p>
                     </div>
                     <div>
                         <div className="flex justify-between items-center mb-1">

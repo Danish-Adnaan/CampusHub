@@ -31,8 +31,8 @@ export default function Dashboard() {
             try {
                 setLoading(true);
                 const [profileRes, eventsRes] = await Promise.all([
-                    axios.get('https://campushub-api.vercel.app/user/profile'),
-                    axios.get('https://campushub-api.vercel.app/user/events')
+                    axios.get('/user/profile'),
+                    axios.get('/user/events')
                 ]);
 
                 setUserProfile(profileRes.data.user);
@@ -67,7 +67,7 @@ export default function Dashboard() {
     const handleRegisterForEvent = async (eventId) => {
         try {
             setRegistering(true);
-            const response = await axios.post(`https://campushub-api.vercel.app/user/register-event/${eventId}`);
+            const response = await axios.post(`/user/register-event/${eventId}`);
 
             // Update the event in the UI to show registered status
             setEvents(prevEvents =>

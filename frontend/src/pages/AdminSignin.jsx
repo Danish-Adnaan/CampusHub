@@ -70,7 +70,7 @@ export default function AdminSignin() {
             // Trim and lowercase email before sending
             const email = formData.email.trim().toLowerCase();
 
-            const response = await axios.post("https://campushub-api.vercel.app/admin/signin", {
+            const response = await axios.post("/admin/signin", {
                 email,
                 password: formData.password
             });

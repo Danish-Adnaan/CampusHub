@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
-    await mongoose.connect('mongodb+srv://srecharandesu:charan%402006@cluster0.a9berin.mongodb.net/CampusHuB')
+    if (!process.env.MONGODB_URI) {
+        throw new Error('MONGODB_URI is not configured');
+    }
+
+    await mongoose.connect(process.env.MONGODB_URI);
 }
 
 connectDB();

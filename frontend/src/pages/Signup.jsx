@@ -40,13 +40,8 @@ export default function Signup() {
             // Trim and lowercase for validation
             const email = formData.email.trim().toLowerCase();
             
-            // Check if email starts with 'o' and ends with 'rguktong.ac.in'
-            if (!email.startsWith("o")) {
-                newErrors.email = "Email must start with 'o'";
-            } else if (!email.endsWith("rguktong.ac.in")) {
-                newErrors.email = "Email must end with 'rguktong.ac.in'";
-            } else if (!/\S+@\S+\.\S+/.test(email)) {
-                newErrors.email = "Email is invalid";
+            if (!/^2\d[^@\s]*@gcet\.edu\.in$/i.test(email)) {
+                newErrors.email = "Use your student email: admission-year ID followed by @gcet.edu.in";
             }
         }
         
@@ -78,7 +73,7 @@ export default function Signup() {
             // Trim and lowercase email before sending to backend
             const email = formData.email.trim().toLowerCase();
             
-            const response = await axios.post("https://campushub-api.vercel.app/user/signup", {
+            const response = await axios.post("/user/signup", {
                 email: email,
                 password: formData.password
             });
@@ -146,13 +141,13 @@ export default function Signup() {
                                     className={`appearance-none block w-full px-3 py-2 border ${
                                         errors.email ? "border-red-300" : "border-gray-300"
                                     } rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
-                                    placeholder="o123456@rguktong.ac.in"
+                                    placeholder="21XXXXXX@gcet.edu.in"
                                 />
                                 {errors.email && (
                                     <p className="mt-1 text-sm text-red-600">{errors.email}</p>
                                 )}
                                 <p className="mt-1 text-xs text-gray-500">
-                                    Email must start with (o) and end with (rguktong.ac.in) currently only for rgukt students only.
+                                    Use your GCET student email ending in @gcet.edu.in.
                                 </p>
                             </div>
                         </div>
