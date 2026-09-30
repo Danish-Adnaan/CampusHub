@@ -2,13 +2,14 @@ const nodemailer = require('nodemailer');
 const { User } = require('../db/db');
 
 const frontendUrl = (process.env.FRONTEND_URL || 'http://localhost:5173').replace(/\/$/, '');
+const emailPassword = (process.env.EMAIL_PASS || '').replace(/\s+/g, '');
 
 const emailService = {
     transporter: nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
+            pass: emailPassword
         }
     }),
 

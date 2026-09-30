@@ -139,14 +139,7 @@ function Footer() {
           <span>Made with</span>
           <span className="text-red-500 animate-pulse text-lg">♥</span>
           <span>by</span>
-          <a
-            href="https://github.com/sreecharan-desu"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium hover:text-white transition-colors duration-300"
-          >
-            SreeCharan
-          </a>
+          <span>AJ</span>
         </div>
       </div>
     </footer>

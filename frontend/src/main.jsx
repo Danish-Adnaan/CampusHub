@@ -45,7 +45,7 @@ const LoadingScreen = () => (
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 1, duration: 1, ease: "easeOut" }}
     >
-      Your OneStop even management 
+      Your OneStop event management 
     </motion.p>
   </motion.div>
 );
